@@ -12,6 +12,9 @@
 body{
     width: 100%;
 }
+.section{
+    padding: 5rem 0;
+}
 
 .container{
     width: 100%;
@@ -23,7 +26,7 @@ body{
 /****** Header styles ******/
 header{
     width: 100%;
-    height: 5rem;
+    height: 40rem;
     padding: 2.5rem 0;
     background-color: #1F2932;
     position: relative;
@@ -40,7 +43,7 @@ header{
     display: none;
 }
 
-.hamburger{
+.hamburger{ 
     display: none;
 }
 
@@ -59,7 +62,7 @@ nav{
 
 .nav-ul li{
     list-style: none;
-    margin: 0 2rem;
+    margin: 0 1.5rem;
 }
 
 li a{
@@ -74,16 +77,77 @@ li a:hover{
     color: rgb(82, 216, 249);
 }
 
+nav ul li a::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: .3rem;
+    background: linear-gradient(to right, blue, rgb(25, 25, 167));
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: all .3s;
+}
+
+nav ul li a:before::before{
+    opacity: 1;
+    transform: scaleX(1);
+}
+
 /****** Media querry ******/
 
 /* Mobile responsive media querry */
-@media screen and(max-width: 830) {
+@media screen and (max-width: 832px) {
+    .hamburger{
+        display: inline-block;
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        cursor: pointer;
+    }
+
+    .hamburger img{
+        width: 3rem;
+    }
     .nav-ul{
         flex-direction: column;
         width: 90%;
         margin: 0 auto;
         padding: 1rem 0;
         margin-top: 4rem;
-        background-color: #E5E7EB;
+        background-color: white;
+        border: 1px solid white;
+        border-radius: .3rem;
+        transform: translateY(-200%);
+        transition: all .5s;
+        z-index: 999;
     }
+
+    .nav-ul li{
+        padding: 1rem 0;
+        font: 1.6rem;
+    }
+
+    li a{
+        color: black;
+        font-weight: 400;
+    }
+
+    li a:hover{
+        color: rgb(82, 216, 249);
+    }
+
+    nav ul li a:hover::before{
+        opacity: 0;
+    }
+
+    /* Slide the menu when hamburger is clicked */
+
+    #toggle:checked~ .nav-ul{
+        transform: translateY(1%);
+    }
+
+
 }
